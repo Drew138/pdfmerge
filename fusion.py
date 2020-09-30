@@ -1,6 +1,5 @@
 from PyPDF2 import PdfFileMerger
 import os
-import sys
 
 
 def merge(pdf_name):
@@ -28,5 +27,5 @@ def merge(pdf_name):
 
 
 if __name__ == "__main__":
-    pdf_name = sys.argv[1]
+    pdf_name = input("File name: ")
     merge(pdf_name)
