@@ -1,22 +1,21 @@
 from PyPDF2 import PdfFileMerger
 import os
-
-
+import sys
 
 
 def merge(pdf_name):
     if not pdf_name:
-        pdf_name = "archivo_combinado.pdf"
-        
+        pdf_name = "combined_file.pdf"
+
     pdfs = [pdf for pdf in os.listdir() if pdf.endswith(".pdf")]
     pdfs = sorted(pdfs)
 
     if len(pdfs) == 0:
-        print("No hay archivos")
+        print("No pdf files available")
         return
 
     if not pdf_name.endswith(".pdf"):
-        pdf_name = pdf_name +".pdf"
+        pdf_name = pdf_name + ".pdf"
 
     merger = PdfFileMerger()
 
@@ -25,8 +24,9 @@ def merge(pdf_name):
 
     with open(pdf_name, "wb") as file:
         merger.write(file)
+    print(f"File {pdf_name} merged successfully")
 
 
 if __name__ == "__main__":
-    pdf_name = input("Nombre de pdf: ")
+    pdf_name = sys.argv[1]
     merge(pdf_name)
